@@ -1,0 +1,9 @@
+[package]
+name = "chip8_emu"
+version = "0.1.0"
+authors = ["matrixon999 <matrixon999@hotmail.com>"]
+edition = "2018"
+
+[dependencies]
+minifb = "*"
+rand = "*"
