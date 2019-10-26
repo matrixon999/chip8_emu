@@ -87,7 +87,7 @@ impl chip8 {
         match nibbles {
             (0x0, 0x0, 0x0, 0x0) => println!("NOP"),
             (0x0, 0x0, 0xE, 0x0) => {
-                println!("NOP");
+                println!("CLS");
                 for pixel in self.gfx.iter_mut() {
                     *pixel = false;
                 }
@@ -114,12 +114,10 @@ impl chip8 {
                 }
             },
             (0x4, _, _, _) => {
-                println!("SE Vx, byte");
+                println!("SNE Vx, byte");
                 if self.V[x] != kk {
                     self.pc += 2;
                 }
-
-                println!("SNE Vx, byte");
             },
             (0x5, _, _, _) => {
                 println!("SE Vx, Vy");
@@ -202,6 +200,17 @@ impl chip8 {
             },
             (0xD, _, _, _) => {
                 println!("DRW Vx, Vy, nibble");
+
+                // TODO deal with collision detection
+                let sprite_bytes = &self.memory[self.I .. self.I + n];
+                let x = self.V[x];
+                let y = self.V[y];
+
+                for x in 0..n {
+                    for pos in 0..8 {
+                        pixel = self.gfx[]
+                    }
+                }
             },
             (0xE, _, 0x9, 0xE) => {
                 println!("SKP Vx");
